@@ -1,5 +1,8 @@
 feature 'Home page' do
 	scenario 'The player enters a name' do
-    sign_in_and_play
+		visit('/')
+	  fill_in :name, with: 'Lisa'
+	  click_button 'submit'
+	  expect(page).to have_content 'Welcome Lisa!'
 	end
 end

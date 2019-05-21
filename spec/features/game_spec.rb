@@ -1,24 +1,22 @@
-feature 'Game' do
-	scenario 'choose rock' do
-    sign_in_and_play
-    click_button 'play'
-    click_button 'rock'
-  end
-end
+feature 'playing a game' do
+	before do
+		visit('/')
+	  fill_in :name, with: 'Lisa'
+	  click_button 'submit'
+	end
 
-
-feature 'Game' do
-	scenario 'choose paper' do
-    sign_in_and_play
-    click_button 'play'
-    click_button 'paper'
+	scenario 'see the shape options' do
+    expect(page).to have_button 'Rock'
+		expect(page).to have_button 'Paper'
+		expect(page).to have_button 'Scissors'
   end
-end
 
-feature 'Game' do
-	scenario 'choose scissors' do
-    sign_in_and_play
-    click_button 'play'
-    click_button 'scissors'
-  end
+	scenario 'computer choses rock' do
+		click_button 'Rock'
+		message = find(:css, "#opponent").text.strip
+		expect(page).to include message
+	end
+
+	def possible_messages
+		["Rock", "Paper", "Scissors"].map { |shape| "Computer chose #{shape}!"}
 end

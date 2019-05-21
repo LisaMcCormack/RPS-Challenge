@@ -3,11 +3,13 @@ require './lib/game'
 require './lib/play'
 
 class RPS < Sinatra::Base
+  enable :sessions
 
   get '/' do
     erb :enter_name
   end
 
+  #is it ok to have @name equal params
   post '/welcome' do
     @name = params[:name]
     erb :welcome
@@ -17,24 +19,16 @@ class RPS < Sinatra::Base
     erb :game
   end
 
-  get '/rock' do
-    rock = Play.new(:rock)
-    @game = Game.new(rock)
-    @num = @game.random
-    erb :rock
+  post '/game' do
+    session[:shape] = params[:shape]
+    session[:computer_shape] = :rock
+    redirect '/result'
   end
 
-  get '/paper' do
-    paper = Play.new(:paper)
-    @game = Game.new(paper)
-    @num = @game.random
-    erb :paper
-  end
 
-  get '/scissors' do
-    scissors = Play.new(:scissors)
-    @game = Game.new(scissors)
-    @num = @game.random
-    erb :scissors
+  get '/result' do
+    @shape = session[:shape]
+    @computer_shape = session[:computer_shape]
+    erb :result
   end
 end
