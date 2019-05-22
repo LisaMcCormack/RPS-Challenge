@@ -5,18 +5,21 @@ feature 'playing a game' do
 	  click_button 'submit'
 	end
 
-	scenario 'see the shape options' do
+	scenario 'it should welcome the player' do
+    expect(page).to have_content("Welcome Lisa!")
+	  click_button 'play'
     expect(page).to have_button 'Rock'
 		expect(page).to have_button 'Paper'
 		expect(page).to have_button 'Scissors'
   end
-
-	scenario 'computer choses rock' do
-		click_button 'Rock'
-		message = find(:css, "#opponent").text.strip
-		expect(page).to include message
-	end
-
-	def possible_messages
-		["Rock", "Paper", "Scissors"].map { |shape| "Computer chose #{shape}!"}
 end
+
+	# scenario 'computer choses rock' do
+	# 	click_button 'Rock'
+	# 	message = find(:css, "#computer").text.strip
+	# 	expect(page).to include message
+	# end
+	#
+	# def possible_messages
+	# 	["Rock", "Paper", "Scissors"].map { |shape| "Computer chose #{shape}!"}
+  # end

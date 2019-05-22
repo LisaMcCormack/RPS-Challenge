@@ -29,8 +29,6 @@ describe Play do
   end
 
   describe 'when the move is scissors' do
-
-
     it 'will initialize with the move' do
       play = Play.new(:scissors)
       expect(play.move).to eq(:scissors)
