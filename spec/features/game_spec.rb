@@ -12,14 +12,19 @@ feature 'playing a game' do
 		expect(page).to have_button 'Paper'
 		expect(page).to have_button 'Scissors'
   end
+
+
+	scenario 'computer choses a random option' do
+		srand(647427) #Scissors
+		click_button 'play'
+		click_button 'Rock'
+    expect(page).to have_content 'Computer chose Scissors!'
+	end
 end
 
-	# scenario 'computer choses rock' do
-	# 	click_button 'Rock'
-	# 	message = find(:css, "#computer").text.strip
-	# 	expect(page).to include message
-	# end
-	#
-	# def possible_messages
-	# 	["Rock", "Paper", "Scissors"].map { |shape| "Computer chose #{shape}!"}
-  # end
+# 	message = find(:css, "#computer").text.strip
+#
+# 	def possible_messages
+# 		["Rock", "Paper", "Scissors"].map { |shape| "Computer chose #{shape}!"}
+#   end
+# end
