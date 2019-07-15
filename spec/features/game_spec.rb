@@ -1,4 +1,7 @@
 feature 'playing a game' do
+
+  SCISSORS = 647427
+
 	before do
 		visit('/')
 	  fill_in :name, with: 'Lisa'
@@ -15,12 +18,21 @@ feature 'playing a game' do
 
 
 	scenario 'computer choses a random option' do
-		srand(647427) #Scissors
 		click_button 'play'
+		srand(SCISSORS)
 		click_button 'Rock'
     expect(page).to have_content 'Computer chose Scissors!'
 	end
-end
+
+  context 'end game' do
+    scenario 'I win' do
+		  click_button 'play'
+		  srand(SCISSORS)
+  	  click_button 'Rock'
+		  expect(page).to have_content 'You won!'
+    end
+  end
+ end
 
 # 	message = find(:css, "#computer").text.strip
 #

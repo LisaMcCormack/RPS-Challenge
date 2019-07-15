@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require './lib/computer'
+require './lib/turn'
 
 class RPS < Sinatra::Base
   enable :sessions
@@ -8,9 +9,13 @@ class RPS < Sinatra::Base
     erb :enter_name
   end
 
-  #is it ok to have @name equal params
   post '/welcome' do
-    @name = params[:name]
+    session[:name] = params[:name]
+    redirect :welcome
+  end
+
+  get '/welcome' do
+    @name = session[:name]
     erb :welcome
   end
 
@@ -19,15 +24,16 @@ class RPS < Sinatra::Base
   end
 
   post '/game' do
-    session[:shape] = params[:shape]
+    p params
+    @turn = Turn.new(session)
+    session[:shape] = params[:shape].downcase.to_sym
     session[:computer_shape] = Computer.new.shape
     redirect '/result'
   end
 
 
   get '/result' do
-    @shape = session[:shape]
-    @computer_shape = session[:computer_shape]
+    @turn = Turn.new(session)
     erb :result
   end
 end

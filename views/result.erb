@@ -3,18 +3,24 @@
   <br/>
   <br/>
   <br/>
-  <font size="30">You chose <%= @shape %>!</font>
+  <font size="30">You chose <%= @turn.shape %>!</font>
   <br/>
   <br/>
   <br/>
   <br/>
   <div id="computer">
-  <font size="30">Computer chose <%= @computer_shape %>!</font></div>
+  <font size="30">Computer chose <%= @turn.computer_shape %>!</font></div>
   <br/>
   <br/>
   <br/>
   <br/>
-  <font size="30">You lose!</font>
+  <% if @turn.win? %>
+    <font size="30">You won!</font>
+  <% elsif @turn.lose? %>
+      <font size="30">You lose!</font>
+  <% elsif @turn.draw? %>
+    <font size="30">Draw!</font>
+  <% end %>
   </center>
   <br/>
   <br/>

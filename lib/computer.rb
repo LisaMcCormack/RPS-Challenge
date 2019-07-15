@@ -1,6 +1,6 @@
 class Computer
 
-  SHAPES = [:rock, :paper, :Scissors]
+  SHAPES = [:rock, :paper, :scissors]
 
   def shape
     SHAPES.sample
