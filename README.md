@@ -1,5 +1,7 @@
 # RPS Challenge
 
+![Alt Text](https://media.giphy.com/media/Vd1olRKyNYoQIzFtSa/giphy.gif)
+
 Instructions
 -------
 
