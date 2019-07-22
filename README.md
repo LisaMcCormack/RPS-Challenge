@@ -21,8 +21,6 @@ Then in the browser go to port indicated on the server, usually localhost:9292
 
 ## Instructions from original Makers <a href="https://github.com/makersacademy/rps-challenge">repo</a>
 
-Task
-----
 
 Knowing how to build web applications is getting us almost there as web developers!
 
