@@ -21,7 +21,7 @@ feature 'playing a game' do
 		click_button 'play'
 		srand(SCISSORS)
 		click_button 'Rock'
-    expect(page).to have_content 'Computer chose Scissors!'
+    expect(page).to have_content "You chose rock! Computer chose scissors! You won! Play again!"
 	end
 
   context 'end game' do
